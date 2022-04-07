@@ -86,6 +86,12 @@ class Sokoban:
               self.personaje_y = self.personaje_y -1  # update the character position
               print("izquierda-personaje_meta,espacio")
 
+            elif self.mapa[self.personaje_x][self.personaje_y] == 5 and self.mapa[self.personaje_x][self.personaje_y - 1] ==4 : # If the character is on the floor and the next position is a floor
+              self.mapa[self.personaje_x][self.personaje_y] = 4 # put floor character last position
+              self.mapa[self.personaje_x][self.personaje_y - 1] = 5 # move the character to next position
+              self.personaje_y = self.personaje_y -1  # update the character position
+              print("izquierda-personaje_meta,meta")
+
 
 
   def movimientoDerecha(self):
@@ -127,13 +133,19 @@ class Sokoban:
               self.mapa[self.personaje_x][self.personaje_y + 1] = 5 # move the character to next position
               self.mapa[self.personaje_x][self.personaje_y + 2] = 6
               self.personaje_y = self.personaje_y +1  # update the character position
-              print("izquierda-personaje,caja_meta,meta")
+              print("derecha-personaje,caja_meta,meta")
 
             elif self.mapa[self.personaje_x][self.personaje_y] == 5 and self.mapa[self.personaje_x][self.personaje_y +1] ==0 : # If the character is on the floor and the next position is a floor
               self.mapa[self.personaje_x][self.personaje_y] = 4 # put floor character last position
               self.mapa[self.personaje_x][self.personaje_y + 1] = 2 # move the character to next position
               self.personaje_y = self.personaje_y +1  # update the character position
-              print("izquierda-personaje_meta,espacio")
+              print("derecha-personaje_meta,espacio")
+
+            elif self.mapa[self.personaje_x][self.personaje_y] == 5 and self.mapa[self.personaje_x][self.personaje_y +1] ==4 : # If the character is on the floor and the next position is a floor
+              self.mapa[self.personaje_x][self.personaje_y] = 4 # put floor character last position
+              self.mapa[self.personaje_x][self.personaje_y + 1] = 5 # move the character to next position
+              self.personaje_y = self.personaje_y +1  # update the character position
+              print("derecha-personaje_meta,meta")
 
 
 
@@ -185,6 +197,12 @@ class Sokoban:
               self.mapa[self.personaje_x -1][self.personaje_y] = 2 # move the character to next position
               self.personaje_x = self.personaje_x -1  # update the character position
               print("arriba-personaje_meta,espacio")
+
+            elif self.mapa[self.personaje_x][self.personaje_y] == 5 and self.mapa[self.personaje_x-1][self.personaje_y] ==4 : # If the character is on the floor and the next position is a floor
+              self.mapa[self.personaje_x][self.personaje_y] = 4 # put floor character last position
+              self.mapa[self.personaje_x-1][self.personaje_y] = 5 # move the character to next position
+              self.personaje_x = self.personaje_x -1  # update the character position
+              print("arriba-personaje_meta,meta")
                 
   def movimientoAbajo(self):
             print("abajo-personaje,espacio")
@@ -232,6 +250,12 @@ class Sokoban:
               self.mapa[self.personaje_x +1][self.personaje_y] = 2 # move the character to next position
               self.personaje_x = self.personaje_x +1  # update the character position
               print("abajo-personaje_meta,espacio")
+
+            elif self.mapa[self.personaje_x][self.personaje_y] == 5 and self.mapa[self.personaje_x +1][self.personaje_y] ==4 : # If the character is on the floor and the next position is a floor
+              self.mapa[self.personaje_x][self.personaje_y] = 4 # put floor character last position
+              self.mapa[self.personaje_x +1][self.personaje_y] = 5 # move the character to next position
+              self.personaje_y = self.personaje_y +1  # update the character position
+              print("abajo-personaje_meta,meta")
             
   def checkLevelComplete(self):
         """_summary_: Check if the level is complete
