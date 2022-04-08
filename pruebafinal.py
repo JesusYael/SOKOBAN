@@ -23,8 +23,10 @@ class Sokoban:
     self.mapa= [
       [1,1,1,1,1,1,1,1,1,1,1],
       [1,0,0,0,0,0,0,0,0,0,1],
+      [1,0,0,0,0,0,0,0,0,0,1],
       [1,0,0,3,0,0,0,3,0,0,1],
       [1,0,0,4,0,2,0,4,0,0,1],
+      [1,0,0,0,0,0,0,0,0,0,1],
       [1,0,0,0,0,0,0,0,0,0,1],
       [1,0,0,0,0,0,0,0,0,0,1],
       [1,1,1,1,1,1,1,1,1,1,1],
@@ -179,7 +181,7 @@ class Sokoban:
               self.personaje_y = self.personaje_y +1  # update the character position
               print("derecha-personaje_meta,meta")
 
-            elif self.mapa[self.personaje_x][self.personaje_y] == 5 and self.mapa[self.personaje_x][self.personaje_y +1] ==3 and self.mapa[self.personaje_x][self.personaje_y - 2] ==0 : # If the character is on the floor and the next position is a floor
+            elif self.mapa[self.personaje_x][self.personaje_y] == 5 and self.mapa[self.personaje_x][self.personaje_y +1] ==3 and self.mapa[self.personaje_x][self.personaje_y +2] ==0 : # If the character is on the floor and the next position is a floor
               self.mapa[self.personaje_x][self.personaje_y] = 4 # put floor character last position
               self.mapa[self.personaje_x][self.personaje_y + 1] = 2 # move the character to next position
               self.mapa[self.personaje_x][self.personaje_y + 2] = 3
@@ -268,7 +270,7 @@ class Sokoban:
               self.mapa[self.personaje_x][self.personaje_y] = 4 # put floor character last position
               self.mapa[self.personaje_x -1][self.personaje_y] = 2 # move the character to next position
               self.mapa[self.personaje_x -2][self.personaje_y] = 3
-              self.personaje_y = self.personaje_y -1  # update the character position
+              self.personaje_x = self.personaje_x -1  # update the character position
               print("arriba-personaje_meta,caja,espacio")
 
             elif self.mapa[self.personaje_x][self.personaje_y] == 5 and self.mapa[self.personaje_x -1][self.personaje_y] ==3 and self.mapa[self.personaje_x -2][self.personaje_y] ==4 : # If the character is on the floor and the next position is a floor
@@ -289,15 +291,15 @@ class Sokoban:
               self.mapa[self.personaje_x][self.personaje_y] = 4 # put floor character last position
               self.mapa[self.personaje_x -1][self.personaje_y] = 5 # move the character to next position
               self.mapa[self.personaje_x -2][self.personaje_y] = 6
-              self.personaje_y = self.personaje_y +1  # update the character position
-              print("derecha-personaje_meta,caja_meta,meta")
+              self.personaje_y = self.personaje_y -1  # update the character position
+              print("arriba-personaje_meta,caja_meta,meta")
                 
   def movimientoAbajo(self):
-            print("abajo-personaje,espacio")
             if self.mapa[self.personaje_x][self.personaje_y] == 2 and self.mapa[self.personaje_x +1][self.personaje_y ] == 0: # If the character is on the floor and the next position is a floor
               self.mapa[self.personaje_x][self.personaje_y] = 0 # put floor character last position
               self.mapa[self.personaje_x +1][self.personaje_y] = 2 # move the character to next position
               self.personaje_x = self.personaje_x + 1 # update the character position
+              print("abajo-personaje,espacio")
               
             elif self.mapa[self.personaje_x][self.personaje_y] == 2 and self.mapa[self.personaje_x +1][self.personaje_y] ==4 : # If the character is on the floor and the next position is a floor
               self.mapa[self.personaje_x][self.personaje_y] = 0 # put floor character last position
@@ -349,7 +351,7 @@ class Sokoban:
               self.mapa[self.personaje_x][self.personaje_y] = 4 # put floor character last position
               self.mapa[self.personaje_x +1][self.personaje_y] = 2 # move the character to next position
               self.mapa[self.personaje_x +2][self.personaje_y] = 3
-              self.personaje_y = self.personaje_y +1  # update the character position
+              self.personaje_x = self.personaje_x +1  # update the character position
               print("abajo-personaje_meta,caja,espacio")
 
             elif self.mapa[self.personaje_x][self.personaje_y] == 5 and self.mapa[self.personaje_x +1][self.personaje_y] ==3 and self.mapa[self.personaje_x +2][self.personaje_y] ==4 : # If the character is on the floor and the next position is a floor
@@ -365,6 +367,13 @@ class Sokoban:
               self.mapa[self.personaje_x +2][self.personaje_y] = 3
               self.personaje_y = self.personaje_y +1  # update the character position
               print("abajo-personaje_meta,caja_meta,espacio")
+
+            elif self.mapa[self.personaje_x][self.personaje_y] == 5 and self.mapa[self.personaje_x +1][self.personaje_y] ==6 and self.mapa[self.personaje_x +2][self.personaje_y] ==4 : # If the character is on the floor and the next position is a floor
+              self.mapa[self.personaje_x][self.personaje_y] = 4 # put floor character last position
+              self.mapa[self.personaje_x +1][self.personaje_y] = 5 # move the character to next position
+              self.mapa[self.personaje_x +2][self.personaje_y] = 6
+              self.personaje_y = self.personaje_y +1  # update the character position
+              print("arriba-personaje_meta,caja_meta,meta")
             
   def checkLevelComplete(self):
         """_summary_: Check if the level is complete
