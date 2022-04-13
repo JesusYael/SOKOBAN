@@ -20,19 +20,14 @@ class Sokoban:
 
   def cargarMapa(self):
     file= open("level1.txt","r")
-    for fila in file:
-      self.mapa.append(int(fila))
+    for fila in range(len(file)-1):
+      print(file[fila],end="")
 
   def imprimirMapa(self):
     for fila in self.mapa:
       print(fila)
 
-  def posicionPersonaje(self):
-    for fila in range(len(self.mapa)):
-      for columna in range(len(self.mapa[fila])):
-        if self.mapa[fila][columna]==2:
-          self.personaje_x= fila
-          self.personaje_y= columna
+
 
   def movimientoIzquierda(self):
                      
@@ -379,7 +374,6 @@ class Sokoban:
         """_summary_: Play the game
         """
         self.cargarMapa() # Call the map
-        self.posicionPersonaje() # Update the character position for new map
         instructions = "d-Derecha, a-Izquierda, w-Arriba, s-Abajo, q-Salir" # Instructions
         print(instructions) # Print the instructions
         while True: # Infinite loop

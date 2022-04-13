@@ -20,9 +20,17 @@ class Sokoban:
 
   def cargarMapa(self):
     file= open("level1.txt","r")
-    for fila in file:
-      self.mapa.append(int(fila))
-
+    self.mapa= [
+      [1,1,1,1,1,1,1,1,1,1,1,1,1],
+      [1,0,0,0,0,0,0,0,0,0,0,0,1],
+      [1,0,0,0,0,0,0,0,0,0,0,0,1],
+      [1,0,0,0,3,0,0,0,3,0,0,0,1],
+      [1,0,0,0,4,0,2,0,4,0,0,0,1],
+      [1,0,0,0,0,0,0,0,0,0,0,0,1],
+      [1,0,0,0,0,0,0,0,0,0,0,0,1],
+      [1,0,0,0,0,0,0,0,0,0,0,0,1],
+      [1,1,1,1,1,1,1,1,1,1,1,1,1],
+]
   def imprimirMapa(self):
     for fila in self.mapa:
       print(fila)
@@ -365,8 +373,39 @@ class Sokoban:
               self.mapa[self.personaje_x +1][self.personaje_y] = 5 # move the character to next position
               self.mapa[self.personaje_x +2][self.personaje_y] = 6
               self.personaje_x = self.personaje_x +1  # update the character position
-              print("arriba-personaje_meta,caja_meta,meta")
-            
+              print("abajo-personaje_meta,caja_meta,meta")
+              
+  def powerup(self):
+    
+            if self.mapa[self.personaje_x][self.personaje_y] == 2 and self.mapa[self.personaje_x +1][self.personaje_y] ==3 and self.mapa[self.personaje_x +2][self.personaje_y] ==1 : # If the character is on the floor and the next position is a floor
+              self.mapa[self.personaje_x][self.personaje_y] = 3 # put floor character last position
+              self.mapa[self.personaje_x +1][self.personaje_y] = 0 # move the character to next position
+              self.mapa[self.personaje_x -1][self.personaje_y] = 2
+              self.personaje_x = self.personaje_x -1  # update the character position
+              print("abajo-jalar caja")
+              
+            elif self.mapa[self.personaje_x][self.personaje_y] == 2 and self.mapa[self.personaje_x -1][self.personaje_y] ==3 and self.mapa[self.personaje_x -2][self.personaje_y] ==1 : # If the character is on the floor and the next position is a floor
+              self.mapa[self.personaje_x][self.personaje_y] = 3 # put floor character last position
+              self.mapa[self.personaje_x -1][self.personaje_y] = 0 # move the character to next position
+              self.mapa[self.personaje_x +1][self.personaje_y] = 2
+              self.personaje_x = self.personaje_x +1  # update the character position
+              print("arriba-jalar caja")
+
+            elif self.mapa[self.personaje_x][self.personaje_y] == 2 and self.mapa[self.personaje_x][self.personaje_y -1] ==3 and self.mapa[self.personaje_x][self.personaje_y -2] ==1 : # If the character is on the floor and the next position is a floor
+              self.mapa[self.personaje_x][self.personaje_y] = 3 # put floor character last position
+              self.mapa[self.personaje_x][self.personaje_y -1] = 0 # move the character to next position
+              self.mapa[self.personaje_x][self.personaje_y +1] = 2
+              self.personaje_y = self.personaje_y +1  # update the character position
+              print("izquierda-jalar caja")
+
+            elif self.mapa[self.personaje_x][self.personaje_y] == 2 and self.mapa[self.personaje_x][self.personaje_y +1] ==3 and self.mapa[self.personaje_x][self.personaje_y +2] ==1 : # If the character is on the floor and the next position is a floor
+              self.mapa[self.personaje_x][self.personaje_y] = 3 # put floor character last position
+              self.mapa[self.personaje_x][self.personaje_y +1] = 0 # move the character to next position
+              self.mapa[self.personaje_x][self.personaje_y -1] = 2
+              self.personaje_y = self.personaje_y -1  # update the character position
+              print("derecha-jalar caja")
+
+    
   def checkLevelComplete(self):
         """_summary_: Check if the level is complete
         """
@@ -380,7 +419,7 @@ class Sokoban:
         """
         self.cargarMapa() # Call the map
         self.posicionPersonaje() # Update the character position for new map
-        instructions = "d-Derecha, a-Izquierda, w-Arriba, s-Abajo, q-Salir" # Instructions
+        instructions = "d-Right, a-Left, w-Up, s-Down" # Instructions
         print(instructions) # Print the instructions
         while True: # Infinite loop
             complete = self.checkLevelComplete() # Check if the level is complete
@@ -400,8 +439,11 @@ class Sokoban:
                 self.movimientoArriba() # Call moveUp rules
             elif move == 's': # If the move is down
                 self.movimientoAbajo() # Call moveDown rules
+            elif move == "e":
+                self.powerup()#Se agarran las cajas
             elif move == 'q': # If the move is quit
                 break # Game quit
 
 game = Sokoban() # Create a object from Sokoban class
 game.jugar() # Fun Fun Fun ;)
+        
